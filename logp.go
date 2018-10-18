@@ -61,6 +61,11 @@ func Init(name string, config *Logging) error {
 			debugSelectors = []string{"*"}
 		}
 	}
+
+	if DebugSelectorsStr == nil {
+		d := ""
+		DebugSelectorsStr = &d
+	}
 	if len(*DebugSelectorsStr) > 0 {
 		debugSelectors = strings.Split(*DebugSelectorsStr, ",")
 		logLevel = LOG_DEBUG
@@ -81,6 +86,10 @@ func Init(name string, config *Logging) error {
 		toFiles = true
 	}
 
+	if ToStderr == nil {
+		t := false
+		ToStderr = &t
+	}
 	// ToStderr disables logging to syslog/files
 	if *ToStderr {
 		toSyslog = false
