@@ -82,6 +82,8 @@ func Init(name string, config *Logging) error {
 	}
 	if config.ToFiles != nil {
 		toFiles = *config.ToFiles
+	} else if config.Files == nil {
+		toFiles = false
 	} else {
 		toFiles = true
 	}
